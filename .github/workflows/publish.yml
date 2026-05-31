@@ -1,4 +1,4 @@
-# Publishes to npm via OIDC trusted publishing (tokenless; provenance automatic).
+# Publishes to npm via OIDC trusted publishing.
 # One-time setup on npmjs.com: package -> Settings -> Trusted publishing -> GitHub Actions
 #   owner=winor30, repo=n8n-nodes-faceless-video, workflow=publish.yml, allowed action=npm publish
 # Release by bumping the version and pushing a tag like `v0.1.2`.
@@ -14,15 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write # required for npm provenance
+      id-token: write
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
-      - run: npm ci
-      - run: npm run build
-      # npm >= 11.5.1 performs the OIDC trusted-publishing handshake; provenance is automatic.
+          package-manager-cache: false
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run prepublishOnly
+      # npm Trusted Publishing currently authenticates the npm CLI publish command via OIDC.
       - run: npm install -g npm@latest
       - run: npm publish --access public --ignore-scripts
