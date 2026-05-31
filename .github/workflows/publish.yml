@@ -22,11 +22,8 @@ jobs:
           run_install: false
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-          registry-url: https://registry.npmjs.org
-          package-manager-cache: false
+          node-version: 24
       - run: pnpm install --frozen-lockfile
       - run: pnpm run prepublishOnly
-      # npm Trusted Publishing currently authenticates the npm CLI publish command via OIDC.
       - run: npm install -g npm@latest
-      - run: npm publish --access public --ignore-scripts
+      - run: npm publish --registry=https://registry.npmjs.org --access public --ignore-scripts --provenance
