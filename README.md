@@ -37,6 +37,61 @@ URL**), pick a **Voice** and **Aspect Ratio** (9:16 / 1:1 / 16:9), and optionall
 Fetch a job by **Job ID**. Returns `{ job_id, status, url?, error? }`
 (`status`: `queued | processing | done | failed`).
 
+## Example workflow
+
+**Script → faceless video.** A Manual Trigger feeds three script segments into the node; with
+**Wait for Completion** on, the node returns the finished MP4 `url`. Paste this into n8n
+(**Workflows → Import from File / clipboard**) and set the **Faceless Video API** credential:
+
+```json
+{
+  "name": "Script → Faceless Video",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "When clicking 'Execute workflow'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 320]
+    },
+    {
+      "parameters": {
+        "operation": "generate",
+        "segments": {
+          "segment": [
+            { "text": "Did you know honey never spoils?" },
+            { "text": "Archaeologists found 3000-year-old honey in Egyptian tombs, still edible." },
+            { "text": "Its low moisture and acidity stop bacteria cold." }
+          ]
+        },
+        "voice": "alloy",
+        "aspect": "9:16",
+        "waitForCompletion": true
+      },
+      "name": "Faceless Video",
+      "type": "n8n-nodes-faceless-video.facelessVideo",
+      "typeVersion": 1,
+      "position": [480, 320]
+    }
+  ],
+  "connections": {
+    "When clicking 'Execute workflow'": {
+      "main": [[{ "node": "Faceless Video", "type": "main", "index": 0 }]]
+    }
+  }
+}
+```
+
+The **Faceless Video** node outputs:
+
+```json
+{ "job_id": "…", "status": "done", "url": "https://your-app.onrender.com/files/<id>.mp4" }
+```
+
+Add a download / upload node after it (e.g. HTTP Request, or a YouTube/TikTok node) to
+auto-post the result. To return immediately with a `job_id` instead of waiting, turn off
+**Wait for Completion** and poll later with **Get Result**.
+
 ## Compatibility
 
 Tested against n8n's current community-node API (`n8nNodesApiVersion: 1`). Requires a running
