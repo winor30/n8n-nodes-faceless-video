@@ -1,13 +1,14 @@
 {
   "name": "n8n-nodes-faceless-video",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "n8n community node to generate captioned, voiced 9:16/1:1/16:9 videos via the Faceless Video API",
   "keywords": [
     "n8n-community-node-package"
   ],
   "license": "MIT",
   "author": {
-    "name": "winor30"
+    "name": "winor30",
+    "email": "tk.30.r.h@gmail.com"
   },
   "homepage": "https://github.com/winor30/n8n-nodes-faceless-video",
   "repository": {
