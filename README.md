@@ -60,7 +60,9 @@ Fetch a job by **Job ID**. Returns `{ job_id, status, url?, error? }`
         "segments": {
           "segment": [
             { "text": "Did you know honey never spoils?" },
-            { "text": "Archaeologists found 3000-year-old honey in Egyptian tombs, still edible." },
+            {
+              "text": "Archaeologists found 3000-year-old honey in Egyptian tombs, still edible."
+            },
             { "text": "Its low moisture and acidity stop bacteria cold." }
           ]
         },
@@ -85,7 +87,11 @@ Fetch a job by **Job ID**. Returns `{ job_id, status, url?, error? }`
 The **Faceless Video** node outputs:
 
 ```json
-{ "job_id": "…", "status": "done", "url": "https://your-app.onrender.com/files/<id>.mp4" }
+{
+  "job_id": "…",
+  "status": "done",
+  "url": "https://your-app.onrender.com/files/<id>.mp4"
+}
 ```
 
 Add a download / upload node after it (e.g. HTTP Request, or a YouTube/TikTok node) to
