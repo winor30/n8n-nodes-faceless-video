@@ -23,10 +23,10 @@ export class FacelessVideoApi implements ICredentialType {
       displayName: 'Base URL',
       name: 'baseUrl',
       type: 'string',
-      default: 'http://localhost:8000',
-      placeholder: 'https://your-app.onrender.com',
+      default: 'https://faceless-video-api.onrender.com',
+      placeholder: 'https://faceless-video-api.onrender.com',
       description:
-        'Base URL of your Faceless Video API, with no trailing slash',
+        'Base URL of the Faceless Video API, with no trailing slash. Defaults to the hosted beta; change it if you self-host.',
       required: true,
     },
     {
@@ -35,6 +35,8 @@ export class FacelessVideoApi implements ICredentialType {
       type: 'string',
       typeOptions: { password: true },
       default: '',
+      description:
+        'Need a key? Request a free beta API key: https://docs.google.com/forms/d/e/1FAIpQLScYBDJJcQLgNq8m23VjpSDyqENROfkFypYGT_rCec2VuGCYVw/viewform',
       required: true,
     },
   ];

@@ -14,10 +14,12 @@ or in the n8n UI: **Settings → Community Nodes → Install** `n8n-nodes-facele
 
 ## Credentials
 
+**Need an API key?** The API is in free beta — [request a beta key here](https://docs.google.com/forms/d/e/1FAIpQLScYBDJJcQLgNq8m23VjpSDyqENROfkFypYGT_rCec2VuGCYVw/viewform). Keys are manually approved.
+
 Create a **Faceless Video API** credential:
 
-- **Base URL** — where your Faceless Video API is hosted (e.g. `https://your-app.onrender.com`).
-- **API Key** — the `x-api-key` for your account.
+- **Base URL** — the hosted beta `https://faceless-video-api.onrender.com` (default), or your own URL if you self-host.
+- **API Key** — the `x-api-key` from your beta approval (or your self-hosted key).
 
 Use the credential's **Test** button to verify the connection.
 
